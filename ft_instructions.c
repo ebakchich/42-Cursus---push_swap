@@ -1,7 +1,9 @@
+#include "push_swap.h"
+
 char    *ft_sa(char *s, int i)
 {
     char    tmp;
- 
+
     tmp = s[0];
     s[0] = s[1];
     s[1] = tmp;
@@ -13,7 +15,7 @@ char    *ft_sa(char *s, int i)
 char    *ft_sb(char *s, int i)
 {
     char    tmp;
- 
+
     tmp = s[0];
     s[0] = s[1];
     s[1] = tmp;
@@ -31,28 +33,168 @@ char *ft_ss(char *sa, char  *sb)
     new = ft_sa(sa, 1);
     nw = ft_sb(sb, 1);
     j = ft_strjoin(new, nw);
-    write(1, "cc", 2);
+    write(1, "ss", 2);
     return (j);
 }
 
 char    *ft_pa(char *sa, char *sb)
 {
-    char    *new;
+    char    new[ft_strlen(sa) + 2];
+	char	*n;
+    int i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	new[0] = sb[0];
+	while(sa[i])
+	{
+		new[i] = sa[j];
+		j++;
+		i++;
+	}
+	new[i] = '\0';
+    sb += 1;
+	n = ft_strjoin(new, sb);
+    write(1, "pa", 2);
+    return (n);
+}
+
+char    *ft_pb(char *sa, char *sb)
+{
+    char    new[ft_strlen(sb) + 2];
+	char	*n;
+    int i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	new[0] = sa[0];
+	while(sa[i])
+	{
+		new[i] = sb[j];
+		j++;
+		i++;
+	}
+	new[i] = '\0';
+    sa += 1;
+	n = ft_strjoin(sa, new);
+    write(1, "pb", 2);
+    return (n);
+}
+
+char    *ft_ra(char *sa, int k)
+{
+    char    new[ft_strlen(sa) + 1];
+    int i;
+    int j;
+
+    i = 0;
+    j = 1;
+    new[ft_strlen(sa) - 1] = sa[0];
+    while (sa[j])
+    {
+        new[i] = sa[j];
+        i++;
+        j++;
+    }
+    new[ft_strlen(sa)] = '\0';
+    sa = ft_strcpy(sa, new);
+    if (k == 0)
+        write(1, "ra", 2);
+    return (sa);
+}
+
+char    *ft_rb(char *sb, int k)
+{
+    char    new[ft_strlen(sb) + 1];
+    int i;
+    int j;
+
+    i = 0;
+    j = 1;
+    new[ft_strlen(sb) - 1] = sb[0];
+    while (sb[j])
+    {
+        new[i] = sb[j];
+        i++;
+        j++;
+    }
+    new[ft_strlen(sb)] = '\0';
+    sb = ft_strcpy(sb, new);
+    if (k == 0)
+        write(1, "rb", 2);
+    return (sb);
+}
+
+char    *ft_rr(char *sa, char *sb)
+{
+    char    *a;
+    char    *b;
+    char    *r;
+
+    a = ft_ra(sa, 1);
+    b = ft_rb(sb, 1);
+    r = ft_strjoin(a, b);
+    write(1, "rr", 2);
+    return (r);
+}
+
+char    *ft_rra(char *sa, int k)
+{
+    char    new[ft_strlen(sa) + 1];
     int i;
     int j;
 
     i = 1;
-    new[0] = sb[0];
     j = 0;
-    while (sa[i])
+    new[0] = sa[ft_strlen(sa) - 1];
+    while (j < ft_strlen(sa) - 1)
     {
         new[i] = sa[j];
         i++;
+        j++;
     }
     new[i] = '\0';
-    sb += 1;
-    new = ft_strjoin(new, sb);
-    return (new);
+    sa = ft_strcpy(sa, new);
+    if (k == 0)
+        write(1, "rra", 3);
+    return (sa);
+}
+
+char    *ft_rrb(char *sb, int k)
+{
+    char    new[ft_strlen(sb) + 1];
+    int i;
+    int j;
+
+    i = 1;
+    j = 0;
+    new[0] = sb[ft_strlen(sb) - 1];
+    while (j < ft_strlen(sb) - 1)
+    {
+        new[i] = sb[j];
+        i++;
+        j++;
+    }
+    new[i] = '\0';
+    sb = ft_strcpy(sb, new);
+    if (k == 0)
+        write(1, "rrb", 3);
+    return (sb);
+}
+
+char    *ft_rrr(char *sa, char *sb)
+{
+    char    *a;
+    char    *b;
+    char    *r;
+
+    a = ft_rra(sa, 1);
+    b = ft_rrb(sb, 1);
+    r = ft_strjoin(a, b);
+    write(1, "rrr", 3);
+    return (r);
 }
 
 char    *ft_instructions(char *sa, char *sb, int i)
@@ -66,17 +208,17 @@ char    *ft_instructions(char *sa, char *sb, int i)
     else if (i == 3)
         return (ft_pa(sa, sb));
     else if (i == 4)
-        return (ft_pb());
+        return (ft_pb(sa, sb));
     else if (i == 5)
-        return (ft_ra());
+        return (ft_ra(sa, 0));
     else if (i == 6)
-        return (ft_rb());
+        return (ft_rb(sb, 0));
     else if (i == 7)
-        return (ft_rr());
+        return (ft_rr(sa, sb));
     else if (i == 8)
-        return (ft_rra());
+        return (ft_rra(sa, 0));
     else if (i == 9)
-        return (ft_rrb());
+        return (ft_rrb(sb, 0));
     else if (i == 10)
-        return (ft_rrr());
+        return (ft_rrr(sa, sb));
 }

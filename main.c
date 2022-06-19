@@ -99,22 +99,38 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-char    *ft_pa(char *sa, char *sb)
+char *ft_strcpy(char *dest, char *src)
 {
-    char    *new;
-    int i;
+	int i;
 
 	i = 0;
-	while(sa[i])
+	while (src[i] != '\0')
 	{
-		new[i] = sa[i];
+		dest[i] = src[i];
 		i++;
 	}
-	new[i] = '\0';
-    sb += 1;
-    printf("%s\n", new);
-    new = ft_strjoin(new, sb);
-    return (new);
+	dest[i] = '\0';
+	return (dest);
+}
+
+char    *ft_rra(char *sa)
+{
+    char    new[ft_strlen(sa) + 1];
+    int i;
+    int j;
+
+    i = 1;
+    j = 0;
+    new[0] = sa[ft_strlen(sa) - 1];
+    while (j < ft_strlen(sa) - 1)
+    {
+        new[i] = sa[j];
+        i++;
+        j++;
+    }
+    new[i] = '\0';
+    sa = ft_strcpy(sa, new);
+    return (sa);
 }
 
 int main()
@@ -126,6 +142,6 @@ int main()
     ss = malloc(7);
     s = strcpy(s, "123456");
     ss = strcpy(ss, "789789");
-    printf("%s", ft_pa(s, ss));
+    printf("%s", ft_rra(s));
     return (0);
 }
