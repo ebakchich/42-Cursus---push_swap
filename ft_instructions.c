@@ -1,25 +1,3 @@
-char    *ft_join(char *sa, char *sb)
-{
-    char    *s;
-    int i;
-    int j;
-
-    i = 0;
-    while(sa[i])
-    {
-        s[i] = sa[i];
-        i++;
-    }
-    j = 0;
-    while(sb[j])
-    {
-        s[i] = sb[j];
-        j++;
-    }
-    s[i] = '\0';
-    return (s);
-}
-
 char    *ft_sa(char *s, int i)
 {
     char    tmp;
@@ -57,6 +35,26 @@ char *ft_ss(char *sa, char  *sb)
     return (j);
 }
 
+char    *ft_pa(char *sa, char *sb)
+{
+    char    *new;
+    int i;
+    int j;
+
+    i = 1;
+    new[0] = sb[0];
+    j = 0;
+    while (sa[i])
+    {
+        new[i] = sa[j];
+        i++;
+    }
+    new[i] = '\0';
+    sb += 1;
+    new = ft_strjoin(new, sb);
+    return (new);
+}
+
 char    *ft_instructions(char *sa, char *sb, int i)
 {
     if (i == 0)
@@ -66,7 +64,7 @@ char    *ft_instructions(char *sa, char *sb, int i)
     else if (i == 2)
         return (ft_ss(sa, sb));
     else if (i == 3)
-        return (ft_pa());
+        return (ft_pa(sa, sb));
     else if (i == 4)
         return (ft_pb());
     else if (i == 5)
@@ -81,18 +79,4 @@ char    *ft_instructions(char *sa, char *sb, int i)
         return (ft_rrb());
     else if (i == 10)
         return (ft_rrr());
-}
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int main()
-{
-    char *s;
-
-    s = malloc(7);
-    s[6] = 0;
-    s = "houssa";
-    printf("%s", s);
-    return (0);
 }
