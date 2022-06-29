@@ -1,4 +1,4 @@
-SRCS    = main.c ft_instructions.c
+SRCS    = main.c ft_instructions.c ft_check.c ft_sorta.c
 NAME    = p
 OBJS 	= ${SRCS:.c=.o}
 AR		= libft/libft.a

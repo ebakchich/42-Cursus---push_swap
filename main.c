@@ -1,14 +1,11 @@
 #include "push_swap.h"
 
-int main()
+int main(int ac, char **av)
 {
-    char *s;
-    char *ss;
-
-    s = malloc(7);
-    ss = malloc(7);
-    s = strcpy(s, "123456");
-    ss = strcpy(ss, "789789");
-    printf("%s", ft_instructions(s, ss, 2));
+    ft_check(ac, av);
+    if (ac <= 4)
+       ft_sorta(ac, av);
+    while (1);
+    //system("leaks p");
     return (0);
 }
